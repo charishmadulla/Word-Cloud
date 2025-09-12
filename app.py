@@ -5,7 +5,6 @@ import PyPDF2
 from docx import Document
 import io
 
-
 def extract_text_from_pdf(file_bytes):
     """Extracts text from a PDF file."""
     try:
@@ -18,7 +17,6 @@ def extract_text_from_pdf(file_bytes):
         st.error(f"Error reading PDF file: {e}")
         return None
 
-
 def extract_text_from_docx(file_bytes):
     """Extracts text from a DOCX file."""
     try:
@@ -30,7 +28,6 @@ def extract_text_from_docx(file_bytes):
     except Exception as e:
         st.error(f"Error reading DOCX file: {e}")
         return None
-
 
 def generate_word_cloud(text):
     """Generates and displays a word cloud from the given text."""
@@ -53,7 +50,6 @@ def generate_word_cloud(text):
     plt.tight_layout(pad=0)
     st.pyplot(fig)
 
-
 def main():
     """Main function to run the Streamlit app."""
     st.set_page_config(layout="wide", page_title="Word Cloud Generator", page_icon="☁")
@@ -65,18 +61,15 @@ def main():
         background-color: #0e1117;
         color: white;
     }
-    /* Upload widget box */
     div[data-testid="stFileUploader"] {
         border: 1px dashed #4b5563;
         padding: 20px;
         border-radius: 10px;
         background-color: #1f2937;
     }
-    /* Upload text */
     div[data-testid="stFileUploader"] > div {
         color: #d1d5db;
     }
-    /* Browse files button */
     button[data-testid="baseButton-secondary"] {
         background-color: #374151;
         color: white;
@@ -116,6 +109,5 @@ def main():
         else:
             st.error("Could not extract text from the uploaded file. Please try another file.")
 
-
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
