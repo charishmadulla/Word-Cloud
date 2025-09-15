@@ -54,21 +54,6 @@ def show_piechart(tokens):
     ax.pie(counts, labels=words, autopct='%1.1f%%', startangle=140)
     ax.set_title("Top 10 Word Distribution")
     st.pyplot(fig)
-
-# 🔥 Heatmap of Word Co-occurrence
-def show_heatmap(tokens, window_size=5):
-    top_words = [word for word, _ in Counter(tokens).most_common(20)]
-    matrix = np.zeros((20, 20))
-    for i, word1 in enumerate(top_words):
-        for j, word2 in enumerate(top_words):
-            count = sum(1 for k in range(len(tokens) - window_size)
-                        if word1 in tokens[k:k+window_size] and word2 in tokens[k:k+window_size])
-            matrix[i][j] = count
-    df = pd.DataFrame(matrix, index=top_words, columns=top_words)
-    fig, ax = plt.subplots(figsize=(10, 8))
-    sns.heatmap(df, cmap='YlGnBu', annot=True, ax=ax)
-    st.pyplot(fig)
-
 # 🚀 Streamlit UI
 st.title("📚 Text Visualization App")
 uploaded_file = st.file_uploader("Upload PDF or DOCX", type=["pdf", "docx"])
